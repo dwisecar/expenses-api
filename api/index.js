@@ -31,6 +31,27 @@ const expenses = [
   },
 ];
 
+const dollars = [
+  {
+    date: new Date(),
+    description: "A fiver",
+    value: 5,
+  },
+  {
+    date: new Date(),
+    description: "A Benjamin",
+    value: 100,
+  },
+];
+
+const cents = [
+  {
+    date: new Date(),
+    description: "The little one",
+    value: 10,
+  },
+];
+
 /****************************
  * This method is here to allow a
  * successful response on root requests.
@@ -54,6 +75,14 @@ app.use(auth());
 
 app.get("/reports", requiredScopes('read:reports'),(req, res) => {
   res.send(expenses);
+});
+
+app.get("/dollars", requiredScopes('read:dollars'),(req, res) => {
+  res.send(dollars);
+});
+
+app.get("/cents", requiredScopes('read:cents'),(req, res) => {
+  res.send(cents);
 });
 
 createServer(app).listen(PORT, () => {
